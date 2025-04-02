@@ -30,6 +30,11 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-web-services'
 
+    implementation 'org.mariadb.jdbc:mariadb-java-client:3.2.0'
+	implementation 'com.bucket4j:bucket4j_jdk17-core:8.14.0'
+
+	implementation 'dnsjava:dnsjava:3.6.2'
+
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 

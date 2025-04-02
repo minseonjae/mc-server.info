@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MCSI</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="font/bootstrap-icons.min.css">
+    <link rel="apple-touch-icon" href="icon.png">
+    <link rel="shortcut icon" href="icon.ico">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-dark px-5 py-3" data-bs-theme="dark">
+    <div class="container-fluid col-lg-10">
+        <a class="navbar-brand" href="../">MCSI</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-navbar"
+                aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="main-navbar">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/add">ADD</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/search">SERVER INFO</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                       aria-haspopup="true" aria-expanded="false">SERVER LIST </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">PLAYERS</a>
+                        <a class="dropdown-item" href="#">PEAK PLAYERS</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">TODAY PEAK PLAYERS</a>
+                        <a class="dropdown-item" href="#">YESTERDAY PEAK PLAYERS</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid px-5 py-3 col-lg-10 col-11">
+    <div class="row g-2">
+        <div class="col-lg-6">
+            <div class="card border-dark h-100">
+                <div class="card-body">
+                    <br>
+                    <h4 class="card-title">서버 추가 시 주의 사항</h4>
+                    <br>
+                    <p class="card-text">
+                        Minecraft Java Edition (PC) 서버만 추가하실 수 있습니다.
+                        <br>
+                        <br>
+                        Java Edition 서버의 기본 포트는 <strong>25565</strong>입니다.
+                        <br>
+                        <br>
+                        서버 이름을 적으실 때에는 <strong><abbr title="서버 전체 이름">풀잎서버</abbr></strong> 중에서
+                        <strong><abbr title="서버 구분 이름">풀잎</abbr></strong>만 적으면 되며,
+                        <br>
+                        서버가 온라인(켜진 상태)일 때에만 추가가 가능합니다.
+                        <br><br>
+                        서버가 SRV 레코드를 사용 중에 있어도 추가하실 수 있습니다!
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card border-dark h-100">
+                <div class="card-body">
+                    <form action="addserver" method="POST" class="needs-validation" novalidate>
+                        <div class="mb-3">
+                            <label for="serverName" class="form-label">서버 이름</label>
+                            <input type="text" class="form-control" id="serverName" name="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="serverIp" class="form-label">서버 주소</label>
+                            <input type="text" class="form-control" id="serverIp" name="ip" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="serverPort" class="form-label">서버 포트</label>
+                            <input type="text" class="form-control" id="serverPort" name="port" placeholder="25565"
+                                   required>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="agreeCheck" name="check" required>
+                            <label class="form-check-label" for="agreeCheck">
+                                <strong><abbr title="이용약관">이용약관</abbr></strong> 및
+                                <strong><abbr title="개인정보취급방침">개인정보취급방침</abbr></strong>에 동의합니다.
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-dark btn-lg w-100">추가</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <hr>
+    <p class="d-inline mr-2 ml-2">
+        <a class="text-dark text-decoration-none">
+            © 2025 SeonJae Min. All rights reserved.
+        </a>
+    </p>
+    <p class="d-inline mr-2 ml-2">
+        <a class="text-dark text-decoration-none" href="/terms">
+            Terms.
+        </a>
+    </p>
+    <p class="d-inline mr-2 ml-2">
+        <a class="text-dark text-decoration-none" href="/privacy">
+            Privacy.
+        </a>
+    </p>
+    <p class="d-block ml-2 mt-2 text-muted small">
+        This site uses the <a href="https://bootswatch.com/sandstone/" class="text-dark text-decoration-none">Bootswatch Sandstone</a> theme (MIT License).
+    </p>
+</div>
+<script src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

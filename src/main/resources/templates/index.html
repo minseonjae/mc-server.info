@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MCSI</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="font/bootstrap-icons.min.css">
+    <link rel="apple-touch-icon" href="icon.png">
+    <link rel="shortcut icon" href="icon.ico">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-black px-5 py-3" data-bs-theme="dark">
+    <div class="container-fluid col-lg-10">
+        <a class="navbar-brand" href="../">MCSI</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-navbar"
+                aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="main-navbar">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/add">ADD</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/search">SERVER INFO</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                       aria-haspopup="true" aria-expanded="false">SERVER LIST </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">PLAYERS</a>
+                        <a class="dropdown-item" href="#">PEAK PLAYERS</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">TODAY PEAK PLAYERS</a>
+                        <a class="dropdown-item" href="#">YESTERDAY PEAK PLAYERS</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid px-5 py-3 col-lg-10 col-11">
+    <div class="col-lg-3 my-lg-0 my-2 float-lg-end">
+        <div class="list-group shadow-sm">
+            <a href="#" class="list-group-item list-group-item-light active" aria-current="true">
+                동시 접속자 순위
+            </a>
+            <a href="#" class="list-group-item list-group-item-action list-group-item-light">
+                최고 동시 접속자 순위
+            </a>
+            <a href="#" class="list-group-item list-group-item-action list-group-item-light">
+                오늘 최고 동시 접속자 순위
+            </a>
+            <a href="#" class="list-group-item list-group-item-action list-group-item-light">
+                어제 최고 동시 접속자 순위
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-9">
+        <h4 class="mb-3">동시 접속자 순위</h4>
+
+        <div class="container mt-4">
+            <div class="border rounded shadow-sm mb-3 overflow-hidden">
+                <div class="row g-0 align-items-center">
+                    <div class="col-lg-2 bg-dark text-white d-flex justify-content-center align-items-center"
+                         style="height: 80px;">
+                        <span class="fs-5 fw-bold">1</span>
+                    </div>
+                    <div class="col-lg-4 col-12 my-lg-0 my-3 text-center m-auto fw-bold">
+                        Leaf
+                        <br>
+                        <small>leafserver.kr</small>
+                    </div>
+                    <div class="col-lg-3 col-6 my-lg-0 my-3 text-center m-auto">
+                        <div class="text-muted small mt-2">Players</div>
+                        <div class="fw-bold fs-5">1219</div>
+                    </div>
+                    <div class="col-lg-3 col-6 my-lg-0 my-3 text-center m-auto">
+                        <div class="text-muted small mt-2">Status</div>
+                        <div class="text-success fw-bold fs-5">Online</div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="border rounded shadow-sm mb-3 overflow-hidden">
+                <div class="row g-0 align-items-center">
+                    <div class="col-lg-2 bg-dark text-white d-flex justify-content-center align-items-center"
+                         style="height: 80px;">
+                    <span class="fs-5 fw-bold">
+                        2
+                    </span>
+                    </div>
+                    <div class="col-lg-4 col-12 my-lg-0 my-3 text-center m-auto fw-bold">
+                        Leaf
+                        <br>
+                        <small>leafserver.kr</small>
+                    </div>
+                    <div class="col-lg-3 col-6 my-lg-0 my-3 text-center m-auto">
+                        <div class="text-muted small mt-2">Players</div>
+                        <div class="fw-bold fs-5">1219</div>
+                    </div>
+                    <div class="col-lg-3 col-6 my-lg-0 my-3 text-center m-auto">
+                        <div class="text-muted small mt-2">Status</div>
+                        <div class="text-success fw-bold fs-5">Online</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <nav aria-label="Page navigation" class="mt-4">
+            <ul class="pagination justify-content-center">
+                <li class="page-item disabled">
+                    <a class="page-link">Previous</a>
+                </li>
+                <li class="page-item active">
+                    <a class="page-link" href="?page=1">1</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page=2">2</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page=3">3</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page=2">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <br>
+    <hr>
+    <p class="d-inline mr-2 ml-2">
+        <a class="text-dark text-decoration-none">
+            © 2025 SeonJae Min. All rights reserved.
+        </a>
+    </p>
+    <p class="d-inline mr-2 ml-2">
+        <a class="text-dark text-decoration-none" href="/terms">
+            Terms.
+        </a>
+    </p>
+    <p class="d-inline mr-2 ml-2">
+        <a class="text-dark text-decoration-none" href="/privacy">
+            Privacy.
+        </a>
+    </p>
+    <p class="d-block ml-2 mt-2 text-muted small">
+        This site uses the <a href="https://bootswatch.com/sandstone/" class="text-dark text-decoration-none">Bootswatch
+        Sandstone</a> theme (MIT License).
+    </p>
+</div>
+<script src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

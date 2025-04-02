@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MC 서버 상태 그래프</title>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000;
+      font-family: sans-serif;
+      padding: 20px;
+    }
+    #chart {
+      width: 100%;
+      max-width: 900px;
+      height: 500px;
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+  <h2 style="text-align:center;">MC 서버 접속자 & 핑 그래프</h2>
+  <div id="chart"></div>
+
+  <script>
+    const chart = echarts.init(document.getElementById('chart'));
+
+    // 완만한 랜덤 데이터 생성
+    function generateStableData(length, base, variance) {
+      const data = [base];
+      for (let i = 1; i < length; i++) {
+        const prev = data[i - 1];
+        const variation = Math.floor(Math.random() * variance * 2) - variance;
+        data.push(Math.max(0, prev + variation));
+      }
+      return data;
+    }
+
+    function generateTimestamps(length) {
+      const timestamps = [];
+      const now = new Date();
+      for (let i = length - 1; i >= 0; i--) {
+        const d = new Date(now.getTime() - i * 10 * 60 * 1000); // 10분 간격
+        const yyyy = d.getFullYear();
+        const MM = String(d.getMonth() + 1).padStart(2, '0');
+        const dd = String(d.getDate()).padStart(2, '0');
+        const hh = String(d.getHours()).padStart(2, '0');
+        const mm = String(d.getMinutes()).padStart(2, '0');
+        timestamps.push(`${yyyy}-${MM}-${dd} ${hh}:${mm}`);
+      }
+      return timestamps;
+    }
+
+    const labels = generateTimestamps(20);
+    const players = generateStableData(20, 500, 50);  // 500±50
+    const pings = generateStableData(20, 15, 5);       // 15±5
+
+    const option = {
+      backgroundColor: '#ffffff',
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+          type: 'cross'
+        }
+      },
+      legend: {
+        data: ['Players', 'Ping'],
+        textStyle: { color: '#333' }
+      },
+      xAxis: {
+        type: 'category',
+        data: labels,
+        axisLine: { lineStyle: { color: '#888' } },
+        axisLabel: {
+          color: '#555',
+          show: false // 시간 축 숨김
+        }
+      },
+      yAxis: [
+        {
+          type: 'value',
+          name: 'Players',
+          position: 'left',
+          axisLine: { lineStyle: { color: '#00aaff' } },
+          axisLabel: { color: '#444' }
+        },
+        {
+          type: 'value',
+          name: 'Ping (ms)',
+          position: 'right',
+          axisLine: { lineStyle: { color: '#ff9900' } },
+          axisLabel: { color: '#444' }
+        }
+      ],
+      series: [
+        {
+          name: 'Players',
+          type: 'line',
+          data: players,
+          yAxisIndex: 0,
+          smooth: true,
+          lineStyle: { color: '#00aaff' }
+        },
+        {
+          name: 'Ping',
+          type: 'line',
+          data: pings,
+          yAxisIndex: 1,
+          smooth: true,
+          lineStyle: { color: '#ff9900' }
+        }
+      ]
+    };
+
+    chart.setOption(option);
+  </script>
+</body>
+</html>
+<!--<!DOCTYPE html>-->
+<!--<html lang="ko">-->
+<!--<head>-->
+<!--  <meta charset="UTF-8">-->
+<!--  <title>서버 상세 그래프</title>-->
+<!--  <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>-->
+<!--  <style>-->
+<!--    body {-->
+<!--      font-family: sans-serif;-->
+<!--      background: #fff;-->
+<!--      margin: 0;-->
+<!--      padding: 20px;-->
+<!--    }-->
+<!--    h2 {-->
+<!--      text-align: center;-->
+<!--    }-->
+<!--    #controls {-->
+<!--      text-align: center;-->
+<!--      margin-bottom: 20px;-->
+<!--    }-->
+<!--    #chart {-->
+<!--      width: 100%;-->
+<!--      max-width: 1000px;-->
+<!--      height: 500px;-->
+<!--      margin: auto;-->
+<!--    }-->
+<!--  </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--  <h2>MC 서버 접속자 & 핑 상세 그래프</h2>-->
+<!--  <div id="controls">-->
+<!--    <label for="interval">시간 단위: </label>-->
+<!--    <select id="interval">-->
+<!--      <option value="5">5분 단위</option>-->
+<!--      <option value="10">10분 단위</option>-->
+<!--      <option value="30">30분 단위</option>-->
+<!--      <option value="60">1시간 단위</option>-->
+<!--      <option value="360">6시간 단위</option>-->
+<!--      <option value="720">12시간 단위</option>-->
+<!--      <option value="1440">1일 단위</option>-->
+<!--    </select>-->
+<!--  </div>-->
+<!--  <div id="chart"></div>-->
+
+<!--  <script>-->
+<!--    const chart = echarts.init(document.getElementById('chart'));-->
+
+<!--    function generateAlignedTimestamps(count, intervalMinutes) {-->
+<!--      const timestamps = [];-->
+<!--      const now = new Date();-->
+<!--      const aligned = new Date(now.getTime() - (now.getMinutes() % intervalMinutes) * 60000);-->
+<!--      aligned.setSeconds(0, 0);-->
+
+<!--      for (let i = count - 1; i >= 0; i&#45;&#45;) {-->
+<!--        const d = new Date(aligned.getTime() - i * intervalMinutes * 60000);-->
+<!--        const yyyy = d.getFullYear();-->
+<!--        const MM = String(d.getMonth() + 1).padStart(2, '0');-->
+<!--        const dd = String(d.getDate()).padStart(2, '0');-->
+<!--        const hh = String(d.getHours()).padStart(2, '0');-->
+<!--        const mm = String(d.getMinutes()).padStart(2, '0');-->
+<!--        timestamps.push(`${yyyy}-${MM}-${dd} ${hh}:${mm}`);-->
+<!--      }-->
+<!--      return timestamps;-->
+<!--    }-->
+
+<!--    function generateStableData(length, base, variance) {-->
+<!--      const data = [base];-->
+<!--      for (let i = 1; i < length; i++) {-->
+<!--        const prev = data[i - 1];-->
+<!--        const variation = Math.floor(Math.random() * variance * 2) - variance;-->
+<!--        data.push(Math.max(0, prev + variation));-->
+<!--      }-->
+<!--      return data;-->
+<!--    }-->
+
+<!--    function updateChart(intervalMinutes) {-->
+<!--      const count = 20;-->
+<!--      const timestamps = generateAlignedTimestamps(count, intervalMinutes);-->
+<!--      const players = generateStableData(count, 500, 50);-->
+<!--      const pings = generateStableData(count, 15, 5);-->
+
+<!--      const option = {-->
+<!--        tooltip: {-->
+<!--          trigger: 'axis',-->
+<!--          axisPointer: { type: 'cross' }-->
+<!--        },-->
+<!--        legend: {-->
+<!--          data: ['Players', 'Ping']-->
+<!--        },-->
+<!--        xAxis: {-->
+<!--          type: 'category',-->
+<!--          data: timestamps,-->
+<!--          axisLabel: {-->
+<!--            rotate: 45,-->
+<!--            formatter: value => value.replace(' ', '\n')-->
+<!--          }-->
+<!--        },-->
+<!--        yAxis: [-->
+<!--          {-->
+<!--            type: 'value',-->
+<!--            name: 'Players'-->
+<!--          },-->
+<!--          {-->
+<!--            type: 'value',-->
+<!--            name: 'Ping (ms)'-->
+<!--          }-->
+<!--        ],-->
+<!--        series: [-->
+<!--          {-->
+<!--            name: 'Players',-->
+<!--            type: 'line',-->
+<!--            data: players,-->
+<!--            yAxisIndex: 0,-->
+<!--            smooth: true,-->
+<!--            lineStyle: { color: '#00aaff' }-->
+<!--          },-->
+<!--          {-->
+<!--            name: 'Ping',-->
+<!--            type: 'line',-->
+<!--            data: pings,-->
+<!--            yAxisIndex: 1,-->
+<!--            smooth: true,-->
+<!--            lineStyle: { color: '#ff9900' }-->
+<!--          }-->
+<!--        ]-->
+<!--      };-->
+
+<!--      chart.setOption(option);-->
+<!--    }-->
+
+<!--    document.getElementById('interval').addEventListener('change', e => {-->
+<!--      updateChart(parseInt(e.target.value));-->
+<!--    });-->
+
+<!--    // 초기 로딩 시 5분 단위-->
+<!--    updateChart(5);-->
+<!--  </script>-->
+<!--</body>-->
+<!--</html>-->
