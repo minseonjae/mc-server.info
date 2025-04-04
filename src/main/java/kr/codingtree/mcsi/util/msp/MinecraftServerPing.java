@@ -33,11 +33,6 @@ public class MinecraftServerPing {
         ByteArrayOutputStream handshake_bytes = new ByteArrayOutputStream();
         DataOutputStream handshake = new DataOutputStream(handshake_bytes);
 
-        Map.Entry<String, Integer> address = SRVResolver.lookupSRV(hostname, port);
-
-        hostname = address.getKey();
-        port = address.getValue();
-
         try {
             socket = new Socket();
 
@@ -74,6 +69,7 @@ public class MinecraftServerPing {
 
             return response;
         } catch (IOException e) {
+            System.err.println("ip: " + hostname + " port: " + port + " protocol: " + protocolVersion);
             e.printStackTrace();
         } finally {
             try { socket.close(); } catch (Exception e) {}

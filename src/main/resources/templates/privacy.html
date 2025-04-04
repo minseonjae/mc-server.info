@@ -1,45 +1,9 @@
 <!doctype html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>MCSI</title>
-
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="font/bootstrap-icons.min.css">
-    <link rel="apple-touch-icon" href="icon.png">
-    <link rel="shortcut icon" href="icon.ico">
+<head th:replace="layout/head :: head">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-dark px-5 py-3" data-bs-theme="dark">
-    <div class="container-fluid col-lg-10">
-        <a class="navbar-brand" href="../">MCSI</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-navbar"
-                aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="main-navbar">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/add">ADD</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/search">SERVER INFO</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                       aria-haspopup="true" aria-expanded="false">SERVER LIST </a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">PLAYERS</a>
-                        <a class="dropdown-item" href="#">PEAK PLAYERS</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">TODAY PEAK PLAYERS</a>
-                        <a class="dropdown-item" href="#">YESTERDAY PEAK PLAYERS</a>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </div>
+<nav th:replace="layout/header :: header">
 </nav>
 <div class="container-fluid px-5 py-3 col-lg-10 col-11">
     <div class="container">
@@ -93,27 +57,8 @@
         <br>
         <p class="text-muted">최종 수정일: 2025년 3월 29일</p>
     </div>
-    <br>
-    <hr>
-    <p class="d-inline mr-2 ml-2">
-        <a class="text-dark text-decoration-none">
-            © 2025 SeonJae Min. All rights reserved.
-        </a>
-    </p>
-    <p class="d-inline mr-2 ml-2">
-        <a class="text-dark text-decoration-none" href="/terms">
-            Terms.
-        </a>
-    </p>
-    <p class="d-inline mr-2 ml-2">
-        <a class="text-dark text-decoration-none" href="/privacy">
-            Privacy.
-        </a>
-    </p>
-    <p class="d-block ml-2 mt-2 text-muted small">
-        This site uses the <a href="https://bootswatch.com/sandstone/" class="text-dark text-decoration-none">Bootswatch Sandstone</a> theme (MIT License).
-    </p>
 </div>
-<script src="js/bootstrap.bundle.min.js"></script>
+<div th:replace="layout/footer :: footer">
+</div>
 </body>
 </html>

@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head th:replace="layout/head :: head"></head>
+<body>
+<nav th:replace="layout/header :: header"></nav>
+<div class="container-fluid text-center px-5 py-3 col-lg-10 col-11">
+    <br><br><br>
+    <h1>401 Unauthorized</h1>
+    <br>
+    <h3>
+        인증되지 않은 접근 입니다.
+        <br>
+        <small>
+            로그인이 필요하거나 유효한 토큰이 안되었을 수 있습니다.
+        </small>
+    </h3>
+    <br><br><br>
+</div>
+<div th:replace="layout/footer :: footer"></div>
+</body>
+</html>
