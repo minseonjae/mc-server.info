@@ -3,8 +3,10 @@ package kr.codingtree.mcsi.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Entity
@@ -24,6 +26,8 @@ public class ServerList {
 
     private int port;
 
+    private boolean srv;
+
     @Column(name = "srv_address", length = 64)
     private String srvAddress;
 
@@ -36,12 +40,10 @@ public class ServerList {
     @Column(name = "ranking_ban")
     private boolean rankingBan;
 
-    @Column(name = "add_address", length = 64)
-    private String addAddress;
+    @Column(name = "created_address", length = 64)
+    private String createdAddress;
 
-    @Column(name = "add_date")
-    private LocalDate addDate;
+    @CreationTimestamp
+    private LocalDateTime createdAt;
 
-    @Column(name = "add_time")
-    private LocalTime addTime;
 }

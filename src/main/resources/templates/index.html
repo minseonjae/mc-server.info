@@ -3,21 +3,20 @@
 <head th:replace="layout/head :: head">
 </head>
 <body>
-<nav th:replace="layout/header :: header">
-</nav>
+<nav th:replace="layout/header :: header"></nav>
 <div class="container-fluid px-5 py-3 col-lg-10 col-11">
     <div class="col-lg-3 my-lg-0 my-2 float-lg-end">
-        <div class="list-group shadow-sm">
-            <a href="#" class="list-group-item list-group-item-light active" aria-current="true">
+        <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
                 동시 접속자 순위
             </a>
-            <a href="#" class="list-group-item list-group-item-action list-group-item-light">
+            <a href="#" class="list-group-item list-group-item-action">
                 최고 동시 접속자 순위
             </a>
-            <a href="#" class="list-group-item list-group-item-action list-group-item-light">
+            <a href="#" class="list-group-item list-group-item-action">
                 오늘 최고 동시 접속자 순위
             </a>
-            <a href="#" class="list-group-item list-group-item-action list-group-item-light">
+            <a href="#" class="list-group-item list-group-item-action">
                 어제 최고 동시 접속자 순위
             </a>
         </div>
@@ -27,9 +26,8 @@
 
         <div class="container mt-4">
             <div class="border rounded shadow-sm mb-3 overflow-hidden">
-                <div class="row g-0 align-items-center">
-                    <div class="col-lg-2 bg-dark text-white d-flex justify-content-center align-items-center"
-                         style="height: 80px;">
+                <a href="#" class="row g-0 align-items-center text-black text-decoration-none">
+                    <div class="col-lg-2 bg-dark text-white d-flex justify-content-center align-items-center" style="height: 80px;">
                         <span class="fs-5 fw-bold">1</span>
                     </div>
                     <div class="col-lg-4 col-12 my-lg-0 my-3 text-center m-auto fw-bold">
@@ -46,7 +44,7 @@
                         <div class="text-success fw-bold fs-5">Online</div>
                     </div>
 
-                </div>
+                </a>
             </div>
             <div class="border rounded shadow-sm mb-3 overflow-hidden">
                 <div class="row g-0 align-items-center">
@@ -94,8 +92,7 @@
         </nav>
     </div>
 </div>
-<div th:replace="layout/footer :: footer">
-</div>
-<script src="js/bootstrap.bundle.min.js"></script>
+<div th:replace="layout/footer :: footer"></div>
+<script src="/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

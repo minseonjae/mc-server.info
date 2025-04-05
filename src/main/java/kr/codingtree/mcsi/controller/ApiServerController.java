@@ -16,11 +16,13 @@ public class ApiServerController {
         MinecraftServerResponseInterface response = MinecraftServerPing.getServerPing(host, 25565, 1000, 4,  true);
         return response;
     }
+
     @GetMapping("/getserver/{host}/{port}")
     public MinecraftServerResponseInterface getServerStatus(@PathVariable String host, @PathVariable int port) {
         MinecraftServerResponseInterface response = MinecraftServerPing.getServerPing(host, port, 1000, 4, false);
         return response;
     }
+
     @GetMapping("/getserver/{host}/{port}/{protocol}")
     public MinecraftServerResponseInterface getServerStatus(@PathVariable String host, @PathVariable int port, @PathVariable int protocol) {
         MinecraftServerResponseInterface response = MinecraftServerPing.getServerPing(host, port, 1000, protocol, false);

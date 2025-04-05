@@ -15,8 +15,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.Map;
 
 @Controller
@@ -38,10 +36,11 @@ public class ServerAddController {
             if (!check) {
                 redirectAttributes.addFlashAttribute("message", "이용약관 및 개인정보취급방침에 동의해주세요!");
             } else {
-                Map.Entry<String, Integer> address = SRVResolver.lookupSRV(ip, serverPort);
+                Map.Entry<String, Integer> lookup = SRVResolver.lookup(ip, serverPort);
 
-                String srvAddress = address.getKey();
-                int srvPort = address.getValue();
+                boolean srv = ip.equals(lookup.getKey()) && serverPort == lookup.getValue();
+                String srvAddress = lookup.getKey();
+                int srvPort = lookup.getValue();
                 InetAddress addr = InetAddress.getByName(srvAddress);
                 String orignalAddress = addr.getHostAddress();
 
@@ -62,12 +61,11 @@ public class ServerAddController {
                             serverList.setAddress(ip);
                             serverList.setPort(serverPort);
                             serverList.setOriginalAddress(orignalAddress);
+                            serverList.setSrv(srv);
                             serverList.setSrvAddress(srvAddress);
                             serverList.setSrvPort(srvPort);
                             serverList.setRankingBan(false);
-                            serverList.setAddAddress(getClientIp(request));
-                            serverList.setAddDate(LocalDate.now());
-                            serverList.setAddTime(LocalTime.now());
+                            serverList.setCreatedAddress(getClientIp(request));
 
                             serverListService.save(serverList);
                             redirectAttributes.addFlashAttribute("message", "성공적으로 서버를 등록했습니다.");
@@ -98,10 +96,12 @@ public class ServerAddController {
             return ip;
         }
 
+        ip = request.getRemoteAddr();
+
         if (ip.equals("0:0:0:0:0:0:0:1") || "::1".equals(ip)) {
             ip = "127.0.0.1";
         }
 
-        return request.getRemoteAddr();
+        return ip;
     }
 }

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head th:replace="layout/head :: head">
+</head>
+<body>
+<nav th:replace="layout/header :: header"></nav>
+
+<div class="container-fluid px-5 py-3 col-lg-10 col-11">
+    <div class="card border-dark">
+        <div class="card-body">
+            <h3 class="card-title mb-3">서버 검색</h3>
+            <form class="mb-4" action="#" th:action="@{/search}" method="get">
+                <div class="input-group">
+                    <input type="text" name="query" class="form-control form-control-lg" placeholder="서버 이름 또는 주소 입력"
+                           th:value="${param.query}">
+                    <button class="btn btn-dark btn-lg" type="submit">검색</button>
+                </div>
+            </form>
+            <div th:if="${serverList != null}">
+                <br>
+                <p th:text="|총 ${serverList.size()}개의 결과가 검색되었습니다.|" class="text-muted mb-3"></p>
+                <div class="list-group shadow-sm">
+                    <a th:each="server : ${serverList}" th:href="@{/info/{address}(address=${server.address})}" th:text="${server.name} + ' (' + ${server.address} + ')'" class="list-group-item list-group-item-action"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="layout/footer :: footer"></div>
+<script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

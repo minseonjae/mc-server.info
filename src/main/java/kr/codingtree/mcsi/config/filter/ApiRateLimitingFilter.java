@@ -1,4 +1,4 @@
-package kr.codingtree.mcsi.filter;
+package kr.codingtree.mcsi.config.filter;
 
 import io.github.bucket4j.Bandwidth;
 import io.github.bucket4j.Bucket;

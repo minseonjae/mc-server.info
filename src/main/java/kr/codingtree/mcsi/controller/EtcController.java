@@ -10,6 +10,7 @@ public class EtcController {
     public String terms() {
         return "terms";
     }
+
     @GetMapping("/privacy")
     public String privacy() {
         return "privacy";

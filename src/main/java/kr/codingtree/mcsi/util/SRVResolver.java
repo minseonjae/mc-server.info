@@ -12,7 +12,7 @@ public class SRVResolver {
 
     public static final String SRV_PREFIX = "_minecraft._tcp.";
 
-    public Map.Entry<String, Integer> lookupSRV(String hostname, int port) {
+    public Map.Entry<String, Integer> lookup(String hostname, int port) {
         try {
             Record[] records = new Lookup(SRV_PREFIX + hostname, Type.SRV).run();
 
@@ -27,6 +27,7 @@ public class SRVResolver {
 
             }
         } catch (TextParseException e) {
+            System.err.println("address : " + hostname + ", port : " + port);
             e.printStackTrace();
         }
         return new AbstractMap.SimpleEntry<>(hostname, port);
