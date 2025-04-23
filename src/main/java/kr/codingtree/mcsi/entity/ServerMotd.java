@@ -16,7 +16,7 @@ public class ServerMotd {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "server_id")
-    private ServerList serverList;
+    private Server serverList;
 
     @Column(columnDefinition = "json")
     private String motd;

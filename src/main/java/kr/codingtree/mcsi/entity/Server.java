@@ -5,14 +5,12 @@ import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 @Entity
 @Table(name = "server_list")
 @Data
-public class ServerList {
+public class Server {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

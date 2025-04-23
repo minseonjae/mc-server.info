@@ -16,7 +16,7 @@ public class ServerData {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "server_id")
-    private ServerList serverList;
+    private Server serverList;
 
     @Column(name = "protocol")
     private int protocol;
