@@ -8,19 +8,27 @@
 <div class="container-fluid px-5 py-3 col-lg-10 col-11">
     <div class="card border-dark">
         <div class="card-body">
-            <h3 class="card-title mb-3">서버 검색</h3>
-            <form class="mb-4" action="#" th:action="@{/search}" method="get">
-                <div class="input-group">
-                    <input type="text" name="query" class="form-control form-control-lg" placeholder="서버 이름 또는 주소 입력"
-                           th:value="${param.query}">
-                    <button class="btn btn-dark btn-lg" type="submit">검색</button>
-                </div>
-            </form>
+            <h3 class="card-title mb-3">서버 검색 결과</h3>
             <div th:if="${serverList != null}">
-                <br>
                 <p th:text="|총 ${serverList.size()}개의 결과가 검색되었습니다.|" class="text-muted mb-3"></p>
                 <div class="list-group shadow-sm">
-                    <a th:each="server : ${serverList}" th:href="@{/info/{address}(address=${server.address})}" th:text="${server.name} + ' (' + ${server.address} + ')'" class="list-group-item list-group-item-action"></a>
+                    <a th:each="server : ${serverList}" th:href="@{/info/{address}(address=${server.address})}"
+                       th:text="${server.name} + ' (' + ${server.address} + ')'"
+                       class="list-group-item list-group-item-action"></a>
+                </div>
+                <div>
+                    <ul class="pagination container-fluid justify-content-center mt-3 mb-0">
+                        <li class="page-item" th:if="${currentPage > 1}">
+                            <a class="page-link" th:href="@{/search(query=${param.query},page=1)}">&laquo;</a>
+                        </li>
+                        <li th:each="pageNum : ${#numbers.sequence(startPage, endPage)}"
+                            th:class="'page-item ' + (${pageNum == currentPage} ? 'disabled' : '')">
+                            <a class="page-link" th:href="@{/search(query=${param.query},page=${pageNum})}" th:text="${pageNum}"></a>
+                        </li>
+                        <li class="page-item" th:if="${currentPage < maxPage}">
+                            <a class="page-link" th:href="@{/search(query=${param.query},page=${maxPage})}">&raquo;</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

@@ -18,7 +18,7 @@ public class SearchController {
     private ServerService service;
 
     @GetMapping("/search")
-    public String search(@RequestParam(required = false) String query, Model model) {
-        return service.searchServerFromWeb(query, model);
+    public String search(@RequestParam(required = false) String query, @RequestParam(required = false, defaultValue = "1") String page, Model model) {
+        return service.searchServerFromWeb(query, page, model);
     }
 }

@@ -8,10 +8,7 @@
         <div class="collapse navbar-collapse" id="main-navbar">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/add">ADD</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/search">SERVER INFO</a>
+                    <a class="nav-link" href="/add">SERVER ADD</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
@@ -25,6 +22,10 @@
                     </div>
                 </li>
             </ul>
+            <form class="d-flex" action="/search" method="get">
+                <input name="query" class="form-control me-sm-2" type="search" placeholder="Server Name or IP">
+                <button class="btn btn-light " type="submit">Search</button>
+            </form>
         </div>
     </div>
 </nav>

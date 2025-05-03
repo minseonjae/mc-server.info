@@ -45,15 +45,33 @@ public class ServerService {
         repository.save(server);
     }
 
-    public String searchServerFromWeb(String query, Model model) {
+    public String searchServerFromWeb(String query, String page, Model model) {
         if (query != null && !query.trim().isEmpty()) {
-            List<Server> serverList = repository.findDistinctByNameContainingIgnoreCaseOrAddressContainingIgnoreCase(query, query);
+            int nPage = 1;
+            int mPage = 1;
+
+            try {
+                nPage = Integer.parseInt(page);
+
+                if (nPage < 1) {
+                    nPage = 1;
+                }
+
+                mPage = (int) Math.ceil((double) repository.countDistinctByNameContainingIgnoreCaseOrAddressContainingIgnoreCase(query, query) / 15);
+            } catch (NumberFormatException e) {}
+
+            model.addAttribute("startPage", nPage - 4 < 1 ? 1 : nPage - 4);
+            model.addAttribute("endPage", nPage + 4 > mPage ? mPage : nPage + 4);
+            model.addAttribute("currentPage", nPage);
+            model.addAttribute("maxPage", mPage);
+
+            List<Server> serverList = repository.searchServersWithPaging(query, 15, (nPage - 1) * 15);
             model.addAttribute("serverList", serverList);
         }
         return "search";
     }
 
-    public String registerServerFromWeb(HttpServletRequest request, RedirectAttributes attributes, @RequestParam String name, @RequestParam String ip, @RequestParam(required = false, defaultValue = "25565") String port, @RequestParam boolean check) {
+    public String registerServerFromWeb(HttpServletRequest request, RedirectAttributes attributes, String name, String ip, String port, boolean check) {
         try {
             int serverPort = Integer.parseInt(port);
 
@@ -120,7 +138,7 @@ public class ServerService {
 
         ip = request.getRemoteAddr();
 
-        if (ip.equals("0:0:0:0:0:0:0:1") || "::1".equals(ip)) {
+        if (ip.equals("0:0:0:0:0:0:0:1") || ip.equals("::1")) {
             ip = "127.0.0.1";
         }
 
