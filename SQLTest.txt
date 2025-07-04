@@ -1,0 +1,10 @@
+select
+ *
+from
+server_data s_data,
+(select
+server_id, MAX(online_players) as peak_players, created_at
+from server_data
+where DATE(created_at) = '2025-04-01'
+GROUP by server_id) cs_data
+where s_data.server_id = cs_data.server_id and s_data.created_at = cs_data.created_at;
