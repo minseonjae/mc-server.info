@@ -27,7 +27,6 @@ public class SRVResolver {
 
             }
         } catch (TextParseException e) {
-            System.err.println("address : " + hostname + ", port : " + port);
             e.printStackTrace();
         }
         return new AbstractMap.SimpleEntry<>(hostname, port);
